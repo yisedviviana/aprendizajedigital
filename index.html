@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aprendizaje Activo</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FBF7F0;--sf:#fff;--tx:#2A1E10;--mu:#6B5A44;--gold:#A67C3D;--gold2:#7E5A22;--sand:#C9AE8A;--ln:#E6DAC8;--ok:#1E8E6A;--hero:#2F2418;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1B140C;--sf:#2A2015;--tx:#F3E9D8;--mu:#BBA987;--gold:#E0B261;--gold2:#F0C97F;--sand:#4A3A25;--ln:#4A3A25;--ok:#46D1A3;--hero:#120D07}}
+:root[data-theme="dark"]{--bg:#1B140C;--sf:#2A2015;--tx:#F3E9D8;--mu:#BBA987;--gold:#E0B261;--gold2:#F0C97F;--sand:#4A3A25;--ln:#4A3A25;--ok:#46D1A3;--hero:#120D07}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:300 17px/1.6 Ubuntu,system-ui,sans-serif}
+h1,h2,h3{font-family:Outfit,system-ui,sans-serif;margin:0;line-height:1.12}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--sf);border-bottom:1px solid var(--ln);display:flex;gap:6px;align-items:center;padding:10px 16px;overflow-x:auto}
+nav b{font:800 18px Outfit,sans-serif;color:var(--gold);margin-right:auto;white-space:nowrap}
+nav button{background:none;border:0;color:var(--mu);font:600 15px Outfit,sans-serif;padding:9px 14px;border-radius:999px;cursor:pointer;white-space:nowrap}
+nav button.on{background:var(--gold);color:#fff}
+:focus-visible{outline:3px solid var(--gold2);outline-offset:2px}
+.xpb{font:600 14px Outfit,sans-serif;color:var(--gold);white-space:nowrap;padding:0 8px}
+main{max-width:1060px;margin:0 auto;padding:24px 16px 60px}
+.pg{display:none}.pg.on{display:block}
+.pill{background:var(--gold);color:#fff;border:0;border-radius:999px;padding:14px 28px;font:600 16px Outfit,sans-serif;cursor:pointer}
+.pill:hover{filter:brightness(.92)}
+.hero{background:var(--hero);color:#F7EBD3;border-radius:28px 28px 28px 6px;padding:44px 28px;display:grid;gap:18px}
+.hero h1{font-size:clamp(34px,7vw,64px);font-weight:800}
+.hero h1 em{font-style:normal;color:#E8B95E}
+.hero p{margin:0;max-width:58ch;font-size:19px}
+.gb{background:rgba(255,255,255,.15);border-radius:12px;height:18px;overflow:hidden}
+.gb i{display:block;height:100%;background:linear-gradient(90deg,#E8B95E,#F7DE9F);width:0;transition:width .6s}
+.gl{font:600 15px Outfit,sans-serif}
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:26px}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:18px;padding:20px}
+.card .em{font-size:34px}
+.card h3{font-size:20px;color:var(--gold);margin:6px 0}
+.card p{margin:0;font-size:16px}
+h2{font-size:clamp(28px,5vw,42px);color:var(--gold);font-weight:800;margin-bottom:8px}
+.sub{color:var(--mu);margin:0 0 20px}
+.map{display:grid;gap:18px}
+.st{display:grid;grid-template-columns:70px 1fr;gap:16px;background:var(--sf);border:1px solid var(--ln);border-radius:20px;padding:20px}
+.st.lock{opacity:.55}.st.dn{border-color:var(--ok)}
+.num{width:60px;height:60px;border-radius:50%;background:var(--gold);color:#fff;display:grid;place-items:center;font:800 26px Outfit,sans-serif}
+.st.dn .num{background:var(--ok)}.st.lock .num{background:var(--mu)}
+.st h3{font-size:22px}.wk{font-size:14px;color:var(--mu)}
+.st p{margin:8px 0}
+.rw{font:600 15px Outfit,sans-serif;color:var(--gold);margin-top:8px}
+.box{background:var(--bg);border:1px dashed var(--ln);border-radius:14px;padding:14px;margin-top:10px}
+.box label{display:block;margin:6px 0;font-size:16px}
+textarea,input[type=text],select{width:100%;font:inherit;font-size:16px;padding:10px 12px;border:2px solid var(--ln);border-radius:12px;background:var(--sf);color:var(--tx);margin:4px 0}
+select{width:auto;max-width:100%}
+.sm{border:2px solid var(--gold);background:none;color:var(--gold);border-radius:999px;padding:8px 16px;font:600 14px Outfit,sans-serif;cursor:pointer;margin:6px 6px 0 0}
+.sm:disabled{opacity:.45;cursor:not-allowed}
+.msg{font-size:15px;color:var(--mu);margin-top:6px;min-height:22px}
+.kits{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.kits ul{padding-left:18px;margin:10px 0 0}.kits li{margin:6px 0;font-size:16px}
+.kits a{color:var(--gold);font-weight:400}
+.tag{font-size:12px;background:var(--sand);color:var(--tx);border-radius:999px;padding:1px 8px;margin-left:4px}
+.lb{width:100%;border-collapse:collapse}
+.lb td,.lb th{text-align:left;padding:12px 10px;border-bottom:1px solid var(--ln)}
+.lb tr.me td{background:color-mix(in srgb,var(--gold) 14%,transparent);font-weight:600}
+.lb .bar{height:10px;border-radius:6px;background:var(--ln);overflow:hidden;min-width:90px}.lb .bar i{display:block;height:100%;background:var(--gold)}
+.bds{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:0 0 28px}
+.bd{text-align:center;border:2px dashed var(--ln);border-radius:16px;padding:16px 8px;opacity:.5}
+.bd.on{opacity:1;border:2px solid var(--gold);background:var(--sf)}
+.bd span{font-size:34px;display:block}
+.bd b{font:600 15px Outfit,sans-serif}
+@media(max-width:560px){.st{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav aria-label="Principal">
+<b>🧭 Misión Activa</b>
+<button data-go="inicio" class="on">Inicio</button><button data-go="mapa">Tablero</button><button data-go="caja">Caja de herramientas</button><button data-go="fama">Salón de la fama</button>
+<span class="xpb" id="xpb"></span>
+</nav>
+<main>
+
+<div class="pg on" id="p-inicio">
+<section class="hero">
+<h1>Misión Activa: conviértete en <em>Agente de Cambio</em></h1>
+<p>¿Estás listo para resolver los misterios de tu entorno y liderar tu propio aprendizaje? Tu aventura comienza aquí.</p>
+<div><div class="gl" id="gl">Nivel de autonomía de la comunidad: 15%</div><div class="gb" role="progressbar" aria-label="Autonomía de la comunidad"><i id="gi"></i></div></div>
+<div><button class="pill" data-go="mapa">Ingresar al Cuartel General</button></div>
+</section>
+<div class="three">
+<div class="card"><div class="em">🧩</div><h3>Aprende haciendo (ABP)</h3><p>Resuelve problemas reales de tu comunidad.</p></div>
+<div class="card"><div class="em">🎮</div><h3>Gamifica tu ruta</h3><p>Gana puntos (XP), sube de nivel y desbloquea insignias.</p></div>
+<div class="card"><div class="em">🚀</div><h3>Sé autónomo</h3><p>Aquí tú tomas las decisiones; la guía eres tú.</p></div>
+</div>
+</div>
+
+<div class="pg" id="p-mapa">
+<h2>Tablero de misiones</h2>
+<p class="sub">Cuatro estaciones. Cada una se desbloquea al superar la anterior.</p>
+<div class="map" id="map"></div>
+</div>
+
+<div class="pg" id="p-caja">
+<h2>Caja de herramientas del agente</h2>
+<p class="sub">¿Tienes dudas sobre cómo avanzar? Consulta estos recursos antes de buscar al profesor. ¡Demuestra tu autonomía!</p>
+<div class="kits">
+<div class="card"><div class="em">🛠️</div><h3>Kit de investigación</h3><ul><li>Cómo buscar fuentes confiables <span class="tag">por definir</span></li><li>Cómo estructurar un problema: qué, a quién, por qué <span class="tag">por definir</span></li><li>Cómo citar lo que encuentras <span class="tag">por definir</span></li></ul></div>
+<div class="card"><div class="em">🎨</div><h3>Kit de creatividad</h3><ul><li><a href="https://www.canva.com" target="_blank" rel="noopener">Canva</a>: presentaciones y afiches</li><li><a href="https://www.powtoon.com" target="_blank" rel="noopener">Powtoon</a>: videos animados</li><li>Prototipos físicos con cajas, papel y materiales del entorno <span class="tag">guía por definir</span></li></ul></div>
+<div class="card"><div class="em">📊</div><h3>Kit de colaboración</h3><ul><li>Plantilla de equipo y roles <span class="tag">por definir</span></li><li>Rúbrica de coevaluación <span class="tag">por definir</span></li><li>Bitácora semanal del equipo <span class="tag">por definir</span></li></ul></div>
+</div>
+</div>
+
+<div class="pg" id="p-fama">
+<h2>Salón de la fama: agentes destacados</h2>
+<p class="sub">Insignias ganadas y puntaje de cada equipo. Los otros equipos son de ejemplo hasta que haya datos reales.</p>
+<div class="bds" id="bds"></div>
+<table class="lb"><thead><tr><th>#</th><th>Equipo</th><th>Avance</th><th>XP</th></tr></thead><tbody id="lb"></tbody></table>
+</div>
+
+</main>
+<script>
+var R=[500,600,700,800],COST=100;
+var M=[
+{t:'El Radar del Contexto',w:'Semana 1',d:'Los agentes exploran su entorno para detectar problemas reales.',r:'Activa el radar: reúnete con tu equipo y decidan qué problema investigarán sin depender del profesor.',b:['🦅','Ojo de Halcón']},
+{t:'El Laboratorio de Saberes',w:'Semana 2',d:'Investigación y comprensión teórica independiente.',r:'Explora la Caja de herramientas y supera el Reto Flash para abrir el camino al diseño.',b:['🧠','Cerebro Estratégico']},
+{t:'El Constructor de Soluciones',w:'Semana 3',d:'Prototipado y creación de la respuesta al problema.',r:'Diseña un prototipo (físico o digital) superando 3 mini-retos de avance.',b:['🏗️','Arquitecto de Soluciones']},
+{t:'La Gran Arena de Innovación',w:'Semana 4',d:'Socialización y defensa del proyecto.',r:'Comparte el enlace de tu video pitch de 2 minutos y vota por el proyecto con más impacto.',b:['👑','Maestro de la Autonomía']}];
+var Q=[['¿Qué fuente es más confiable para investigar?',['Un video sin autor','Un informe de una institución reconocida','Un mensaje reenviado'],1],
+['¿Qué describe mejor un buen problema?',['Dice qué pasa, a quién afecta y por qué importa','Es una solución ya decidida','Es una opinión general'],0],
+['Si te atascas, ¿qué haces primero?',['Esperar al profesor','Revisar la caja de herramientas y consultar a tu equipo','Dejar la tarea'],1]];
+var MC=['Boceto de la idea','Primera versión del prototipo','Prueba con otra persona'];
+var VP=['Reciclaje en el colegio','Seguridad en el camino a casa','Huerta escolar'];
+var K='mad_v1',S={m:[0,0,0,0],sp:0,f:{p:'',a:['','',''],c:[0,0,0],u:'',v:-1}};
+try{var r=JSON.parse(localStorage.getItem(K)||'null');if(r)S=r}catch(e){}
+function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}}
+function xp(){return S.m.reduce(function(a,v,i){return a+(v?R[i]:0)},0)-S.sp}
+function nd(){return S.m.filter(Boolean).length}
+function $(i){return document.getElementById(i)}
+function draw(){
+var x=xp(),pc=Math.min(99,15+nd()*21);
+$('xpb').textContent=x+' XP';$('gl').textContent='Nivel de autonomía de la comunidad: '+pc+'%'+(pc<99?' · ¡Desbloquea las misiones!':' · ¡Misión cumplida!');$('gi').style.width=pc+'%';
+$('map').innerHTML=M.map(function(m,i){var dn=S.m[i],lk=i>0&&!S.m[i-1];
+return '<article class="st'+(dn?' dn':'')+(lk&&!dn?' lock':'')+'"><div class="num">'+(dn?'✓':lk?'🔒':i+1)+'</div><div><h3>Misión '+(i+1)+': '+m.t+'</h3><div class="wk">'+m.w+'</div><p>'+m.d+'</p><p><b>El reto:</b> '+m.r+'</p>'+(lk&&!dn?'<p class="msg">Supera la misión anterior para desbloquear esta.</p>':body(i,dn))+'<div class="rw">Recompensa: +'+R[i]+' XP · Insignia «'+m.b[1]+'»</div></div></article>'}).join('');
+var f=S.f;['p','u'].forEach(function(k){var e=$('f-'+k);if(e)e.value=f[k]});
+$('bds').innerHTML=M.map(function(m,i){return '<div class="bd'+(S.m[i]?' on':'')+'"><span>'+m.b[0]+'</span><b>'+m.b[1]+'</b></div>'}).join('');
+var T=[['Halcones del Norte',2100],['Red de Cambio',1700],['Los Constructores',1200]].concat([['Tu equipo',Math.max(0,x)]]).sort(function(a,b){return b[1]-a[1]});
+$('lb').innerHTML=T.map(function(t,i){return '<tr'+(t[0]=='Tu equipo'?' class="me"':'')+'><td>'+(i+1)+'</td><td>'+t[0]+'</td><td><div class="bar"><i style="width:'+Math.min(100,t[1]/26)+'%"></i></div></td><td>'+t[1]+'</td></tr>'}).join('');
+}
+function body(i,dn){
+if(dn)return '<p class="msg">✅ Misión superada.</p>';
+var f=S.f;
+if(i==0)return '<div class="box"><label for="f-p">Problema que investigaremos y por qué lo elegimos</label><textarea id="f-p" data-f="p" rows="3" maxlength="400"></textarea><button class="sm" data-do="0">Activar radar</button><div class="msg" id="m0"></div></div>';
+if(i==1)return '<div class="box">'+Q.map(function(q,k){return '<label>'+q[0]+'<br><select data-a="'+k+'"><option value="">Elige…</option>'+q[1].map(function(o,j){return '<option value="'+j+'"'+(f.a[k]===String(j)?' selected':'')+'>'+o+'</option>'}).join('')+'</select></label>'}).join('')+'<button class="sm" data-do="1">Enviar Reto Flash</button><div class="msg" id="m1"></div></div>';
+if(i==2)return '<div class="box">'+MC.map(function(c,k){return '<label><input type="checkbox" data-c="'+k+'"'+(f.c[k]?' checked':'')+'> Mini-reto '+(k+1)+': '+c+'</label>'}).join('')+'<button class="sm" data-do="2">Entregar prototipo</button><button class="sm" data-do="ase"'+(S.asesoria||xp()<COST?' disabled':'')+'>Asesoría exprés (−'+COST+' XP)</button><div class="msg" id="m2">'+(S.asesoria?'Consejo: prueba tu prototipo con alguien que no conozca el problema y anota qué no entendió.':'')+'</div></div>';
+return '<div class="box"><label for="f-u">Enlace de tu video pitch</label><input type="text" id="f-u" data-f="u" placeholder="https://…"><b style="font-family:Outfit">Vota por el proyecto de mayor impacto</b>'+VP.map(function(v,k){return '<label><input type="radio" name="v" data-v="'+k+'"'+(f.v==k?' checked':'')+'> '+v+' <span class="tag">ejemplo</span></label>'}).join('')+'<button class="sm" data-do="3">Entrar a la arena</button><div class="msg" id="m3"></div></div>';
+}
+function say(i,t){var e=$('m'+i);if(e)e.textContent=t}
+document.addEventListener('click',function(e){
+var g=e.target.closest('[data-go]');
+if(g){var id=g.dataset.go;document.querySelectorAll('.pg').forEach(function(p){p.classList.toggle('on',p.id=='p-'+id)});document.querySelectorAll('nav button').forEach(function(b){b.classList.toggle('on',b.dataset.go==id)});scrollTo(0,0);return}
+var d=e.target.closest('[data-do]');if(!d)return;var k=d.dataset.do,f=S.f;
+if(k=='ase'){if(xp()>=COST){S.asesoria=1;S.sp+=COST;save();draw()}return}
+k=+k;
+if(k==0){if(f.p.trim().length<20)return say(0,'Cuéntanos un poco más: escribe al menos 20 letras.')}
+if(k==1){if(!Q.every(function(q,j){return f.a[j]===String(q[2])}))return say(1,'Aún hay respuestas por revisar. Consulta la Caja de herramientas y vuelve a intentarlo.')}
+if(k==2){if(!f.c.every(Boolean))return say(2,'Faltan mini-retos por superar.')}
+if(k==3){if(!/^https?:\/\//.test(f.u.trim()))return say(3,'Pega el enlace completo de tu video (empieza con https://).');if(f.v<0)return say(3,'Elige un proyecto para votar.')}
+S.m[k]=1;save();draw()});
+document.addEventListener('input',function(e){var t=e.target;if(t.dataset.f){S.f[t.dataset.f]=t.value;save()}});
+document.addEventListener('change',function(e){var t=e.target;
+if(t.dataset.a!==undefined){S.f.a[+t.dataset.a]=t.value}
+else if(t.dataset.c!==undefined){S.f.c[+t.dataset.c]=t.checked?1:0}
+else if(t.dataset.v!==undefined){S.f.v=+t.dataset.v}
+else return;save()});
+draw();
+</script>
+</body>
+</html>
